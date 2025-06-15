@@ -2,7 +2,7 @@ import requests
 from config import API_KEY
 
 def get_weather(city_name):
-    base_url = "https://api.openweathermap.org/data/2.5/weather"
+    url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
         "q": city_name,
         "appid": API_KEY,
@@ -10,17 +10,15 @@ def get_weather(city_name):
     }
 
     try:
-        response = requests.get(base_url, params=params)
+        response = requests.get(url, params=params)
 
-        # Handle invalid API key explicitly
         if response.status_code == 401:
-            print("❌ Invalid API key. Please check your config.py.")
-            return None
+            return {"error": "Invalid API key."}
 
-        # Handle other HTTP errors
         response.raise_for_status()
 
         data = response.json()
+
         return {
             "city": data["name"],
             "temperature": data["main"]["temp"],
