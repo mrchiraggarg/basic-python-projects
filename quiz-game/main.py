@@ -1,4 +1,5 @@
 from quiz import load_questions, ask_question
+import random
 
 def start_quiz():
     print("🎉 Welcome to the Python Quiz Game!")
