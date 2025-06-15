@@ -6,8 +6,16 @@ FILENAME = "scores.json"
 def load_scores():
     if not os.path.exists(FILENAME):
         return []
-    with open(FILENAME, "r") as f:
-        return json.load(f)
+
+    try:
+        with open(FILENAME, "r") as f:
+            data = f.read().strip()
+            if not data:  # File is empty
+                return []
+            return json.loads(data)
+    except (json.JSONDecodeError, ValueError):
+        print("⚠️ Warning: scores.json is corrupted or invalid. Resetting scores.")
+        return []
 
 def save_score(player_name, attempts):
     scores = load_scores()
