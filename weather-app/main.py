@@ -1,21 +1,35 @@
+import tkinter as tk
+from tkinter import messagebox
 from weather import get_weather
 
-def main():
-    print("🌦️  Welcome to the Weather App")
+def search_weather():
+    city = city_entry.get()
+    result = get_weather(city)
 
-    while True:
-        city = input("\nEnter a city name (or 'exit' to quit): ").strip()
-        if city.lower() == "exit":
-            print("👋 Goodbye!")
-            break
+    if "error" in result:
+        messagebox.showerror("Error", result["error"])
+    else:
+        output_label.config(
+            text=f"""📍 {result['city']}
+🌡️ Temperature: {result['temperature']}°C
+🌤️ Condition: {result['description']}
+💧 Humidity: {result['humidity']}%
+🌬️ Wind: {result['wind_speed']} m/s"""
+        )
 
-        data = get_weather(city)
-        if data:
-            print(f"\n📍 City: {data['city']}")
-            print(f"🌡️  Temperature: {data['temperature']}°C")
-            print(f"🌤️  Condition: {data['description']}")
-            print(f"💧 Humidity: {data['humidity']}%")
-            print(f"🌬️  Wind Speed: {data['wind_speed']} m/s")
+# GUI setup
+root = tk.Tk()
+root.title("🌦️ Weather App")
+root.geometry("350x300")
+root.resizable(False, False)
 
-if __name__ == "__main__":
-    main()
+tk.Label(root, text="Enter City Name:", font=("Arial", 12)).pack(pady=10)
+city_entry = tk.Entry(root, width=30, font=("Arial", 12))
+city_entry.pack()
+
+tk.Button(root, text="Search", font=("Arial", 12), command=search_weather).pack(pady=10)
+
+output_label = tk.Label(root, text="", font=("Arial", 11), justify="left")
+output_label.pack(pady=10)
+
+root.mainloop()
