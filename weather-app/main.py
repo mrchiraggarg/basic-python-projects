@@ -21,10 +21,15 @@ def search_weather():
     city = city_entry.get()
     result = get_weather(city)
 
-    if "error" in result:
-        messagebox.showerror("Error", result["error"])
+    if not result or "error" in result:
+        messagebox.showerror("Error", result.get("error", "Something went wrong."))
+        city_label.config(text="", fg="white")
+        temp_label.config(text="", fg="white")
+        desc_label.config(text="", fg="white")
+        humidity_label.config(text="", fg="white")
+        wind_label.config(text="", fg="white")
     else:
-        icon = get_weather_icon(result["main_weather"])
+        icon = get_weather_icon(result.get("main_weather", ""))
         city_label.config(text=f"{icon} {result['city']}", fg="#FFD700")
         temp_label.config(text=f"🌡️ Temp: {result['temperature']}°C", fg="#FF5733")
         desc_label.config(text=f"🌤️ {result['description']}", fg="#33C4FF")
