@@ -12,9 +12,11 @@ try:
 
     user_choice = int(input("Enter your choice: "))
 
-    if user_choice > 1 or user_choice < 3:
+
+    if user_choice < 1 or user_choice > 3:
         print("Invalid choice. Please enter 1, 2, or 3.")
-    else :
+
+    else:
         if user_choice == 1:
             user_choice = 'rock'
         elif user_choice == 2:
