@@ -12,8 +12,27 @@ print("Type 3 For Scissors")
 user_choice = int(input("Enter your choice: "))
 
 try:
-    if user_choice < 1 or user_choice > 3:
+    if not user_choice < 1 or user_choice > 3:
         print("Invalid choice. Please enter rock, paper, or scissors.")
+    else :
+        if user_choice == 1:
+            user_choice = 'rock'
+        elif user_choice == 2:
+            user_choice = 'paper'
+        elif user_choice == 3:
+            user_choice = 'scissors'
+
+        print(f"You chose: {user_choice}")
+        print(f"Computer chose: {computer_choice}")
+
+        if user_choice == computer_choice:
+            print("It's a tie!")
+        elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+             (user_choice == 'paper' and computer_choice == 'rock') or \
+             (user_choice == 'scissors' and computer_choice == 'paper'):
+            print("You win! 🎉")
+        else:
+            print("You lose! 😢")
 
 except Exception as e:
     print(f"❌ Error: {e}")
