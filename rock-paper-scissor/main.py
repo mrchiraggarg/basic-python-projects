@@ -5,15 +5,15 @@ try:
     # user_choice = input("Enter rock, paper, or scissors: ").lower()
 
     print("Welcome to Rock, Paper, Scissors!")
-    print("You can choose from:")
-    print("Type 1 For Rock")
-    print("Type 2 For Paper")
-    print("Type 3 For Scissors")
+    print("Please type to select:")
+    print("1 For Rock")
+    print("2 For Paper")
+    print("3 For Scissors")
 
     user_choice = int(input("Enter your choice: "))
 
     if not user_choice < 1 or user_choice > 3:
-        print("Invalid choice. Please enter rock, paper, or scissors.")
+        print("Invalid choice. Please enter 1, 2, or 3.")
     else :
         if user_choice == 1:
             user_choice = 'rock'
