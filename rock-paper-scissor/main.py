@@ -5,9 +5,9 @@ computer_choice = random.choice(['rock', 'paper', 'scissors'])
 
 print("Welcome to Rock, Paper, Scissors!")
 print("You can choose from:")
-print("1. Rock")
-print("2. Paper")
-print("3. Scissors")
+print("Select 1 For Rock")
+print("Select 2 For Paper")
+print("Select 3 For Scissors")
 
 user_choice = int(input("Enter your choice (1, 2, or 3): "))
 
