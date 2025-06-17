@@ -11,5 +11,9 @@ print("Type 3 For Scissors")
 
 user_choice = int(input("Enter your choice: "))
 
-if user_choice not in ['rock', 'paper', 'scissors']:
-    print("Invalid choice. Please enter rock, paper, or scissors.")
+try:
+    if user_choice < 1 or user_choice > 3:
+        print("Invalid choice. Please enter rock, paper, or scissors.")
+
+except Exception as e:
+    print(f"❌ Error: {e}")
